@@ -1,0 +1,19 @@
+{
+  "name": "limit",
+  "version": "0.0.1",
+  "description": "Limit the number of callback to be called at the same time.",
+  "main": "limit.js",
+  "scripts": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "debug": "~0.7.0"
+  },
+  "repository": "",
+  "keywords": [
+    "limit",
+    "loop"
+  ],
+  "author": "me",
+  "license": "MIT"
+}
