@@ -8,37 +8,42 @@ var limit = require('./')
 describe('limit', function() {
 
   beforeEach(function() {
-    // console.log('#' + num + ' begins')
+    limit.reset()
+    console.log('#' + num + ' begins')
     num++
   })
 
   describe('when `release` is invoked', function() {
     it('should decrement active member if no arguments are passed', function() {
-      limit(function(release) {
+      limit('hoge', function(hoge, release) {
         release()
       })
     })
   })
 
   describe('when active member is smaller than the max', function() {
-    // it('should invoke the callback immediately', function() {
-      // var c = 0
-      // limit('foo', function(obj, release) {
-        // obj.should.eql(c)
-        // c++
-      // })
-      // limit.do('hoge', function(release) {
-        // var len = 3
-        // for (var i = 0; i < len; i++) {
-          // release('foo', i)
-        // };
-      // })
-      // limit.start('hoge')
-    // })
+    it('should invoke the callback immediately', function() {
+      var len = 3
+      for (var i = 0; i < len; i++) {
+        limit('foo', function(foo, release) {
+          release();
+        })
+      };
+    })
   })
 
   describe('when active member is lager than the max', function() {
-    it('should store the item', function(done) {
+    it('should store the item', function() {
+      var len = 8
+        , time = 20
+      for (var i = 0; i < len; i++) {
+        limit(i, function(index, release) {
+          console.log('#' + index);
+        })
+      };
+    })
+
+    it('should invoke stored function if `release` is called', function(done) {
       var len = 8
         , time = 20
       for (var i = 0; i < len; i++) {
@@ -55,25 +60,6 @@ describe('limit', function() {
         };
       };
     })
-
-    // it('should invoke stored item and decrement active member if `release` is called', function(done) {
-      // var c = 0
-        // , len = 8
-      // limit.do('foo', function(obj, release) {
-        // setTimeout(function() {
-          // release()
-        // }, 20);
-        // c++;
-        // if (c == len) done();
-      // })
-      // limit.do('hoge', function(release) {
-        // for (var i = 0; i < len; i++) {
-          // release('foo', '#' + i)
-        // };
-      // })
-      // limit.start('hoge')
-    // })
-
   })
 
 })

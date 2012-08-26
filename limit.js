@@ -18,6 +18,17 @@ var debug = require('debug')('limit')
 exports.max = 5;
 
 /**
+ * Reset counters.
+ */
+
+exports.reset = function() {
+  callback = null;
+  pending = [];
+  active = 0;
+  return this;
+}
+
+/**
  * Limits the number of function to be called at the same time. All
  * arguments are preserved and passed to the callback which is passed
  * to `limit`. The last argument is `release`. This function will
@@ -46,8 +57,7 @@ function limit() {
     debug('active: ' + active);
     if (active == 0) {
       debug('end?');
-      callback = null;
-      pending = [];
+      exports.reset();
     }
     return;
   };
