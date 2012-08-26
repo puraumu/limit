@@ -3,10 +3,10 @@
  * Module dependencies.
  */
 
-var debug = require('debug')('leach')
+var debug = require('debug')('limit')
 
 /**
- * Expose `leach`
+ * Expose `limit`
  */
 
  exports = module.exports = limit;
